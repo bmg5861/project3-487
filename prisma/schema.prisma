@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tenants {
+  id       String   @id @default(uuid())
+  name     String
+  phone    String
+  email    String
+  checkin  DateTime
+  checkout DateTime
+}
+
+model employees {
+  id   String @id @default(uuid())
+  name String
+  type String
+}
+
+model apartments {
+  appNumber Int    @id
+  occupent  String @unique
+}
+
+model requests {
+  id          Int      @id @default(autoincrement())
+  appNumber   Int
+  area        String
+  discription String
+  picture     String
+  time        DateTime @default(now())
+  status      Boolean  @default(false)
+}
