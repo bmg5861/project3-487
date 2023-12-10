@@ -8,28 +8,18 @@ datasource db {
 }
 
 model tenants {
-  id       String   @id @default(uuid())
-  name     String
-  phone    String
-  email    String
-  checkin  DateTime
-  checkout DateTime
-}
-
-model employees {
-  id   String @id @default(uuid())
-  name String
-  type String
-}
-
-model apartments {
-  appNumber Int    @id
-  occupent  String @unique
+  id         String   @id @default(uuid())
+  appartment String   @unique
+  name       String
+  phone      String
+  email      String
+  checkin    DateTime @default(now())
+  checkout   DateTime @default(now())
 }
 
 model requests {
   id          Int      @id @default(autoincrement())
-  appNumber   Int
+  appNumber   String
   area        String
   discription String
   picture     String
